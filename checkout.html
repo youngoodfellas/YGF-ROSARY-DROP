@@ -25,24 +25,23 @@
 
   <div class="checkout-grid">
 
-    <form class="checkout-form" id="checkout-form">
+    <form class="checkout-form" action="success.html">
       <h2>DETAILS</h2>
 
-      <input type="text" id="name" placeholder="Full Name" required>
-      <input type="email" id="email" placeholder="Email Address" required>
-      <input type="text" id="phone" placeholder="Phone Number" required>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="text" placeholder="Phone Number" required>
 
       <h2>DELIVERY</h2>
 
-      <input type="text" id="address" placeholder="Address Line 1" required>
-      <input type="text" id="city" placeholder="City" required>
-      <input type="text" id="postcode" placeholder="Postcode" required>
-      <input type="text" id="country" placeholder="Country" required>
+      <input type="text" placeholder="Address Line 1" required>
+      <input type="text" placeholder="City" required>
+      <input type="text" placeholder="Postcode" required>
+      <input type="text" placeholder="Country" required>
 
       <button type="submit" class="cart-btn">RESERVE ORDER</button>
 
       <p class="payment-note">Not everyone gets one.</p>
-      <p id="order-message"></p>
     </form>
 
     <div class="order-summary">
@@ -58,25 +57,5 @@
 </section>
 
 <script src="script.js"></script>
-
-<script>
-  const checkoutForm = document.getElementById("checkout-form");
-
-  checkoutForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const cart = JSON.parse(localStorage.getItem("ygf-cart")) || [];
-
-    if (cart.length === 0) {
-      alert("Your cart is empty.");
-      return;
-    }
-
-    localStorage.removeItem("ygf-cart");
-
-    window.location.href = "success.html";
-  });
-</script>
-
 </body>
 </html>
