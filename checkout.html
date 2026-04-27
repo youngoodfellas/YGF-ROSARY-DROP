@@ -11,11 +11,11 @@
 
 <header class="shop-header">
   <a href="index.html" class="brand-logo">
-    <img src="YGF LOGO.PNG" alt="YGF Logo">
+    <img src="YGF L0G0.PNG" alt="YGF Logo">
   </a>
 
   <nav>
-    <a href="rosary.html">Rosary</a>
+    <a href="shop.html">Shop</a>
     <a href="cart.html">Cart <span id="cart-count">0</span></a>
   </nav>
 </header>
@@ -25,7 +25,7 @@
 
   <div class="checkout-grid">
 
-    <form class="checkout-form" id="checkout-form">
+    <form class="checkout-form" action="success.html">
       <h2>DETAILS</h2>
 
       <input type="text" placeholder="Full Name" required>
@@ -42,14 +42,15 @@
       <button type="submit" class="cart-btn">RESERVE ORDER</button>
 
       <p class="payment-note">Not everyone gets one.</p>
-      <p id="order-message"></p>
     </form>
 
     <div class="order-summary">
       <h2>ORDER SUMMARY</h2>
       <div id="checkout-items"></div>
       <p class="total-line">Total: £<span id="checkout-total">0</span></p>
-      <p class="manual-note">All orders are processed manually. You will be contacted after checkout.</p>
+      <p class="manual-note">
+        All orders are processed manually. You will be contacted after checkout.
+      </p>
     </div>
 
   </div>
