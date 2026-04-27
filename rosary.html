@@ -6,29 +6,42 @@
   <title>YGF Rosary</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="product-page">
 
 <header class="shop-header">
   <a href="index.html" class="brand-logo">
-    <img src="YGF L0G0.PNG" alt="YGF Logo">
+    <img src="YGF LOGO.PNG" alt="YGF Logo">
   </a>
 
   <nav>
-    <a href="shop.html">Shop</a>
+    <a href="index.html">Home</a>
+    <a href="rosary.html">Rosary</a>
     <a href="cart.html">Cart <span id="cart-count">0</span></a>
   </nav>
 </header>
 
-<section class="rosary-container">
+<div class="drop-banner">
+  FIRST DROP. NOT EVERYONE GETS ONE.
+</div>
 
-  <div class="rosary-images">
-    <img id="main-rosary-img" src="rosary1.png" alt="YGF Rosary">
+<section class="premium-product">
+
+  <div class="product-gallery">
+    <div class="main-product-image">
+      <img id="main-rosary-img" src="rosary1.png" alt="YGF Rosary">
+    </div>
   </div>
 
-  <div class="rosary-info">
+  <div class="premium-info">
     <p class="drop-label">YOUNG GOOD FELLAS</p>
     <h1>YGF ROSARY</h1>
     <p class="price">£45</p>
+
+    <p class="desc">
+      First symbol. Stay militant.<br>
+      Solid build. Made to last.
+    </p>
 
     <label class="colour-label" for="rosary-colour">Colour</label>
     <select id="rosary-colour" class="colour-select" onchange="updateRosaryColour()">
@@ -37,21 +50,41 @@
       <option value="Gold" data-image="rosary3.png">Gold</option>
     </select>
 
-    <p class="desc">
-      Not for everyone. You either get it or you don’t.
-    </p>
-
-    <button class="cart-btn" onclick="addSelectedRosaryToCart()">
-      ADD TO CART
-    </button>
-
-    <div class="rosary-details">
-      <p>ONE SIZE</p>
-      <p>LIMITED</p>
-      <p>STAY MILITANT</p>
+    <div class="detail-list">
+      <div>
+        <span>✦</span>
+        <p><strong>YGF MEDALLION</strong><br>Engraved. Not for everyone.</p>
+      </div>
+      <div>
+        <span>✦</span>
+        <p><strong>HELMET PENDANT</strong><br>Built around the YGF symbol.</p>
+      </div>
+      <div>
+        <span>✦</span>
+        <p><strong>LIMITED RUN</strong><br>10 pieces per colour.</p>
+      </div>
     </div>
+
+    <button class="cart-btn full-btn" onclick="addSelectedRosaryToCart()">ADD TO CART</button>
+
+    <p class="secure-line">SECURE CHECKOUT</p>
   </div>
 
+</section>
+
+<section class="trust-row">
+  <div>
+    <h3>WORLDWIDE ENERGY</h3>
+    <p>Built for the movement.</p>
+  </div>
+  <div>
+    <h3>NOT EVERYONE GETS ONE</h3>
+    <p>Limited pieces only.</p>
+  </div>
+  <div>
+    <h3>BUILT TO LAST</h3>
+    <p>Quality over everything.</p>
+  </div>
 </section>
 
 <script src="script.js"></script>
