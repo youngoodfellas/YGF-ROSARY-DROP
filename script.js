@@ -1,4 +1,4 @@
-const DROP_PASSWORD = "STAYMILITANT";
+const DROP_PASSWORD = "MILITANT";
 const DROP_DATE = "2026-05-30T19:00:00+01:00";
 
 const ROSARY_STOCK = {
@@ -18,13 +18,6 @@ function saveCart(cart) {
   localStorage.setItem("ygf-cart", JSON.stringify(cart));
 }
 
-function updateCartCount() {
-  const count = document.getElementById("cart-count");
-  if (count) {
-    count.textContent = getCart().length;
-  }
-}
-
 function getRosaryColourCount(colour) {
   return getCart().filter(item => item.name === "YGF ROSARY" && item.colour === colour).length;
 }
@@ -37,9 +30,7 @@ function updateRosaryColour() {
   selectedRosaryImage = select.options[select.selectedIndex].dataset.image;
 
   const mainImage = document.getElementById("main-rosary-img");
-  if (mainImage) {
-    mainImage.src = selectedRosaryImage;
-  }
+  if (mainImage) mainImage.src = selectedRosaryImage;
 }
 
 function addSelectedRosaryToCart() {
@@ -84,7 +75,7 @@ function displayCart() {
   const cart = getCart();
 
   if (cart.length === 0) {
-    container.innerHTML = "<p>Your cart is empty.</p>";
+    container.innerHTML = "Your cart is empty.";
     return;
   }
 
@@ -96,7 +87,7 @@ function displayCart() {
         <img src="${item.image}" alt="${item.name}">
         <div>
           <h3>${item.name}</h3>
-          <p>Colour: ${item.colour}</p>
+          <p>Colour: ${item.colour || "N/A"}</p>
           <p>Size: ${item.size}</p>
           <p>£${item.price}</p>
         </div>
@@ -104,6 +95,13 @@ function displayCart() {
       </div>
     `;
   });
+}
+
+function updateCartCount() {
+  const cart = getCart();
+  const count = document.getElementById("cart-count");
+
+  if (count) count.textContent = cart.length;
 }
 
 function displayCheckout() {
@@ -129,7 +127,7 @@ function displayCheckout() {
     itemsBox.innerHTML += `
       <div class="checkout-item">
         <strong>${item.name}</strong><br>
-        Colour: ${item.colour}<br>
+        Colour: ${item.colour || "N/A"}<br>
         Size: ${item.size}<br>
         £${item.price}
       </div>
@@ -137,6 +135,10 @@ function displayCheckout() {
   });
 
   totalBox.textContent = total;
+}
+
+function placeOrder() {
+  alert("Order placed as a test. Payment is not active yet.");
 }
 
 function runCountdown() {
@@ -182,23 +184,6 @@ if (passwordForm) {
     } else {
       message.textContent = "Wrong password.";
     }
-  });
-}
-
-const checkoutForm = document.getElementById("checkout-form");
-
-if (checkoutForm) {
-  checkoutForm.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const cart = getCart();
-
-    if (cart.length === 0) {
-      alert("Your cart is empty.");
-      return;
-    }
-
-    window.location.href = "success.html";
   });
 }
 
