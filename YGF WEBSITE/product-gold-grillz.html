@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GOLD GRILLZ YGF POLO | YGF</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="product-page">
+
+<header class="shop-header">
+  <a href="index.html" class="brand-logo">
+    <img src="YGF L0G0.PNG" alt="YGF Logo">
+  </a>
+  <nav>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart <span id="cart-count">0</span></a>
+  </nav>
+</header>
+
+<section class="product-detail">
+  <img src="G0LDGRILLZ POLO.png" alt="Gold Grillz Polo">
+
+  <div class="product-info-box">
+    <h1>GOLD GRILLZ YGF POLO</h1>
+    <p class="price">£50</p>
+    <p class="desc">Clean flex. No long talk.</p>
+
+    <select id="size" class="size-select">
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+    </select>
+
+    <button class="cart-btn" onclick="addToCart('GOLD GRILLZ YGF POLO', 50, 'G0LDGRILLZ POLO.png', document.getElementById('size').value)">
+      ADD TO CART
+    </button>
+
+    <div class="size-guide">
+      <h2>SIZE GUIDE</h2>
+      <table>
+        <tr><th>Size</th><th>Chest</th><th>Length</th></tr>
+        <tr><td>Small</td><td>25"</td><td>25.5"</td></tr>
+        <tr><td>Medium</td><td>26"</td><td>26.5"</td></tr>
+        <tr><td>Large</td><td>27"</td><td>27.5"</td></tr>
+        <tr><td>XL</td><td>28"</td><td>28.5"</td></tr>
+      </table>
+      <p class="fit-note">TRUE TO SIZE — GET YOUR REGULAR SIZE</p>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

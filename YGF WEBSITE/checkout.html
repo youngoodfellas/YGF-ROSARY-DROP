@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Your Piece | YGF</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="checkout-page">
+
+<header class="shop-header">
+  <a href="index.html" class="brand-logo">
+    <img src="YGF L0G0.PNG" alt="YGF Logo">
+  </a>
+
+  <nav>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart <span id="cart-count">0</span></a>
+  </nav>
+</header>
+
+<section class="checkout-section">
+  <h1>SECURE YOUR PIECE</h1>
+
+  <div class="checkout-grid">
+
+    <form class="checkout-form" id="checkout-form">
+      <h2>DETAILS</h2>
+
+      <input type="text" id="name" placeholder="Full Name" required>
+      <input type="email" id="email" placeholder="Email Address" required>
+      <input type="text" id="phone" placeholder="Phone Number" required>
+
+      <h2>DELIVERY</h2>
+
+      <input type="text" id="address" placeholder="Address Line 1" required>
+      <input type="text" id="city" placeholder="City" required>
+      <input type="text" id="postcode" placeholder="Postcode" required>
+      <input type="text" id="country" placeholder="Country" required>
+
+      <button type="submit" class="cart-btn">RESERVE ORDER</button>
+
+      <p class="payment-note">Not everyone gets one.</p>
+
+      <p id="order-message"></p>
+    </form>
+
+    <div class="order-summary">
+      <h2>ORDER SUMMARY</h2>
+      <div id="checkout-items"></div>
+      <p class="total-line">Total: £<span id="checkout-total">0</span></p>
+      <p class="manual-note">
+        All orders are processed manually. You will be contacted after checkout.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<script src="script.js"></script>
+
+<script>
+  const checkoutForm = document.getElementById("checkout-form");
+
+  checkoutForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const cart = JSON.parse(localStorage.getItem("ygf-cart")) || [];
+
+    if (cart.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    document.getElementById("order-message").innerText = "Reservation received.";
+
+    localStorage.removeItem("ygf-cart");
+
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 2000);
+  });
+</script>
+
+</body>
+</html>

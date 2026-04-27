@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BLACK ARMY T-SHIRT | YGF</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="product-page">
+
+<header class="shop-header">
+  <a href="index.html" class="brand-logo">
+    <img src="YGF L0G0.PNG" alt="YGF Logo">
+  </a>
+  <nav>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart <span id="cart-count">0</span></a>
+  </nav>
+</header>
+
+<section class="product-detail">
+  <img src="BLACK ARMY T.png" alt="Black Army T-Shirt">
+
+  <div class="product-info-box">
+    <h1>BLACK ARMY T-SHIRT</h1>
+    <p class="price">£35</p>
+    <p class="desc">Simple. Loud. Does what it needs to do.</p>
+
+    <select id="size" class="size-select">
+      <option>Small</option>
+      <option>Medium</option>
+      <option>Large</option>
+      <option>XL</option>
+    </select>
+
+    <button class="cart-btn" onclick="addToCart('BLACK ARMY T-SHIRT', 35, 'BLACK ARMY T.png', document.getElementById('size').value)">
+      ADD TO CART
+    </button>
+
+    <div class="size-guide">
+      <h2>SIZE GUIDE</h2>
+      <table>
+        <tr><th>Size</th><th>Chest</th><th>Length</th></tr>
+        <tr><td>Small</td><td>20.5"</td><td>27.5"</td></tr>
+        <tr><td>Medium</td><td>22.5"</td><td>28.5"</td></tr>
+        <tr><td>Large</td><td>24.5"</td><td>29.5"</td></tr>
+        <tr><td>XL</td><td>26.5"</td><td>30.5"</td></tr>
+      </table>
+      <p class="fit-note">TRUE TO SIZE — GET YOUR REGULAR SIZE</p>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
