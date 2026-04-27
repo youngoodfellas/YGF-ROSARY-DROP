@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YGF Rosary</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="product-page">
+
+<header class="shop-header">
+  <a href="index.html" class="brand-logo">
+    <img src="YGF L0G0.PNG" alt="YGF Logo">
+  </a>
+
+  <nav>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart <span id="cart-count">0</span></a>
+  </nav>
+</header>
+
+<section class="rosary-container">
+
+  <div class="rosary-images">
+    <img id="main-rosary-img" src="rosary1.png" alt="YGF Rosary">
+  </div>
+
+  <div class="rosary-info">
+    <p class="drop-label">YOUNG GOOD FELLAS</p>
+    <h1>YGF ROSARY</h1>
+    <p class="price">£45</p>
+
+    <label class="colour-label" for="rosary-colour">Colour</label>
+    <select id="rosary-colour" class="colour-select" onchange="updateRosaryColour()">
+      <option value="Silver" data-image="rosary1.png">Silver</option>
+      <option value="Black" data-image="rosary2.png">Black</option>
+      <option value="Gold" data-image="rosary3.png">Gold</option>
+    </select>
+
+    <p class="desc">
+      Not for everyone. You either get it or you don’t.
+    </p>
+
+    <button class="cart-btn" onclick="addSelectedRosaryToCart()">
+      ADD TO CART
+    </button>
+
+    <div class="rosary-details">
+      <p>ONE SIZE</p>
+      <p>LIMITED</p>
+      <p>STAY MILITANT</p>
+    </div>
+  </div>
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
