@@ -563,3 +563,26 @@ a {
   color: #b8860b;
   letter-spacing: 2px;
 }
+/* SUCCESS PAGE */
+
+.success-section {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 25px;
+}
+
+.success-section h1 {
+  font-size: 52px;
+  letter-spacing: 7px;
+  margin-bottom: 18px;
+}
+
+.success-text {
+  color: #aaa;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
