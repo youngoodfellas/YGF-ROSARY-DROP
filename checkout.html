@@ -42,7 +42,6 @@
       <button type="submit" class="cart-btn">RESERVE ORDER</button>
 
       <p class="payment-note">Not everyone gets one.</p>
-
       <p id="order-message"></p>
     </form>
 
@@ -73,13 +72,9 @@
       return;
     }
 
-    document.getElementById("order-message").innerText = "Reservation received.";
-
     localStorage.removeItem("ygf-cart");
 
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 1200);
+    window.location.href = "success.html";
   });
 </script>
 
