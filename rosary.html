@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YGF Rosary</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="shop-header">
+  <a href="index.html" class="brand-logo">
+    <img src="YGF L0G0.PNG" alt="YGF Logo">
+  </a>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="rosary.html">Rosary</a>
+    <a href="cart.html">Cart <span id="cart-count">0</span></a>
+  </nav>
+</header>
+
+<section class="rosary-container">
+
+  <div class="rosary-images">
+    <img id="main-rosary-img" src="rosary1.png" alt="YGF Silver Rosary">
+    <img id="second-rosary-img" src="rosary1x.png" alt="YGF Silver Rosary Detail">
+  </div>
+
+  <div class="rosary-info">
+    <p class="small-title">YOUNG GOOD FELLAS</p>
+
+    <h1>YGF ROSARY</h1>
+    <p class="price">£45</p>
+
+    <p class="desc">Not everyone gets one.</p>
+
+    <label class="colour-label" for="rosary-colour">Colour</label>
+
+    <select id="rosary-colour" class="colour-select" onchange="updateRosaryColour()">
+      <option value="Silver" data-main="rosary1.png" data-second="rosary1x.png">Silver</option>
+      <option value="Black" data-main="rosary2.png" data-second="rosary2x.png">Black</option>
+      <option value="Gold" data-main="rosary3.png" data-second="rosary3x.png">Gold</option>
+    </select>
+
+    <button class="cart-btn" onclick="addSelectedRosaryToCart()">ADD TO CART</button>
+
+    <div class="rosary-details">
+      <p>ONE SIZE</p>
+      <p>LIMITED</p>
+      <p>STAY MILITANT</p>
+    </div>
+  </div>
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
