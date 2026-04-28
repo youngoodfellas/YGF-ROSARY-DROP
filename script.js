@@ -1,173 +1,169 @@
-// ==========================
-// PASSWORD (INDEX PAGE)
-// ==========================
-const form = document.getElementById("password-form");
-
-if (form) {
-  form.addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const password = document.getElementById("drop-password").value;
-    const message = document.getElementById("password-message");
-
-    if (password === "ROSARIES3/3") {
-      window.location.href = "rosary.html";
-    } else {
-      message.textContent = "Incorrect password";
-    }
-  });
+function getCart() {
+  return JSON.parse(localStorage.getItem("ygf-cart")) || [];
 }
 
-
-// ==========================
-// COUNTDOWN
-// ==========================
-const countdownEl = document.querySelector("[data-countdown]");
-
-if (countdownEl) {
-  const target = new Date("May 30, 2026 19:00:00").getTime();
-
-  setInterval(() => {
-    const now = new Date().getTime();
-    const diff = target - now;
-
-    if (diff <= 0) {
-      countdownEl.textContent = "LIVE";
-      return;
-    }
-
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const m = Math.floor((diff / (1000 * 60)) % 60);
-    const s = Math.floor((diff / 1000) % 60);
-
-    countdownEl.textContent = `${d}D ${h}H ${m}M ${s}S`;
-  }, 1000);
+function saveCart(cart) {
+  localStorage.setItem("ygf-cart", JSON.stringify(cart));
 }
 
-
-// ==========================
-// CART COUNT
-// ==========================
 function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem("ygf-cart")) || [];
-  const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const cart = getCart();
+  const total = cart.reduce((sum, item) => sum + (Number(item.quantity) || 1), 0);
 
   const el = document.getElementById("cart-count");
   if (el) el.textContent = total;
 }
 
-updateCartCount();
-
-
-// ==========================
-// CHANGE ROSARY IMAGES
-// ==========================
 function updateRosaryColour() {
   const select = document.getElementById("rosary-colour");
+  if (!select) return;
+
   const option = select.options[select.selectedIndex];
 
-  const main = option.getAttribute("data-main");
-  const second = option.getAttribute("data-second");
-
-  document.getElementById("main-rosary-img").src = main;
-  document.getElementById("second-rosary-img").src = second;
+  document.getElementById("main-rosary-img").src = option.dataset.main;
+  document.getElementById("second-rosary-img").src = option.dataset.second;
 }
 
-
-// ==========================
-// ADD TO CART (FIXED)
-// ==========================
 function addSelectedRosaryToCart() {
-  const cart = JSON.parse(localStorage.getItem("ygf-cart")) || [];
+  const cart = getCart();
 
   const select = document.getElementById("rosary-colour");
   const option = select.options[select.selectedIndex];
 
-  const name = "YGF ROSARY (" + option.value + ")";
-  const price = 45;
+  const itemName = "YGF ROSARY (" + option.value + ")";
+  const itemPrice = 45;
 
-  const existing = cart.find(item => item.name === name);
+  const existing = cart.find(item => item.name === itemName);
 
   if (existing) {
-    existing.quantity += 1;
+    existing.quantity = (Number(existing.quantity) || 1) + 1;
   } else {
     cart.push({
-      name: name,
-      price: price,
+      name: itemName,
+      price: itemPrice,
       quantity: 1
     });
   }
 
-  localStorage.setItem("ygf-cart", JSON.stringify(cart));
+  saveCart(cart);
   updateCartCount();
-
   alert("Added to cart");
 }
 
-
-// ==========================
-// CART PAGE
-// ==========================
 function loadCart() {
-  const cart = JSON.parse(localStorage.getItem("ygf-cart")) || [];
   const container = document.getElementById("cart-items");
-
   if (!container) return;
+
+  const cart = getCart();
+
+  if (cart.length === 0) {
+    container.innerHTML = "<p>Your cart is empty.</p>";
+    return;
+  }
 
   container.innerHTML = "";
 
   cart.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "cart-item";
+    const quantity = Number(item.quantity) || 1;
+    const price = Number(item.price) || 45;
+    const name = item.name || "YGF ROSARY";
 
-    div.innerHTML = `
-      <p>${item.name}</p>
-      <p>x${item.quantity}</p>
-      <p>£${item.price * item.quantity}</p>
-      <button onclick="removeItem(${index})">Remove</button>
+    container.innerHTML += `
+      <div class="cart-item">
+        <div>
+          <h3>${name}</h3>
+          <p>x${quantity}</p>
+          <p>£${price * quantity}</p>
+        </div>
+        <button onclick="removeItem(${index})">Remove</button>
+      </div>
     `;
-
-    container.appendChild(div);
   });
 }
 
 function removeItem(index) {
-  const cart = JSON.parse(localStorage.getItem("ygf-cart")) || [];
+  const cart = getCart();
   cart.splice(index, 1);
-  localStorage.setItem("ygf-cart", JSON.stringify(cart));
+  saveCart(cart);
   loadCart();
+  loadCheckout();
   updateCartCount();
 }
 
-loadCart();
-
-
-// ==========================
-// CHECKOUT PAGE
-// ==========================
 function loadCheckout() {
-  const cart = JSON.parse(localStorage.getItem("ygf-cart")) || [];
   const container = document.getElementById("checkout-items");
   const totalEl = document.getElementById("checkout-total");
 
   if (!container || !totalEl) return;
 
-  container.innerHTML = "";
+  const cart = getCart();
+
+  if (cart.length === 0) {
+    container.innerHTML = "Your cart is empty.";
+    totalEl.textContent = "0";
+    return;
+  }
 
   let total = 0;
+  container.innerHTML = "";
 
   cart.forEach(item => {
-    const div = document.createElement("div");
-    div.className = "checkout-item";
+    const quantity = Number(item.quantity) || 1;
+    const price = Number(item.price) || 45;
+    const name = item.name || "YGF ROSARY";
 
-    div.innerHTML = `<strong>${item.name}</strong> x${item.quantity}`;
-    container.appendChild(div);
+    total += price * quantity;
 
-    total += item.price * item.quantity;
+    container.innerHTML += `
+      <div class="checkout-item">
+        <strong>${name}</strong> x${quantity}<br>
+        £${price * quantity}
+      </div>
+    `;
   });
 
   totalEl.textContent = total;
 }
 
+const passwordForm = document.getElementById("password-form");
+
+if (passwordForm) {
+  passwordForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const input = document.getElementById("drop-password").value.trim().toUpperCase();
+
+    if (input === "YGF") {
+      window.location.href = "rosary.html";
+    } else {
+      document.getElementById("password-message").textContent = "Wrong password";
+    }
+  });
+}
+
+const countdown = document.querySelector("[data-countdown]");
+
+if (countdown) {
+  const dropDate = new Date("2026-05-30T19:00:00+01:00").getTime();
+
+  setInterval(() => {
+    const now = new Date().getTime();
+    const gap = dropDate - now;
+
+    if (gap <= 0) {
+      countdown.textContent = "LIVE";
+      return;
+    }
+
+    const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+    const h = Math.floor((gap / (1000 * 60 * 60)) % 24);
+    const m = Math.floor((gap / (1000 * 60)) % 60);
+    const s = Math.floor((gap / 1000) % 60);
+
+    countdown.textContent = `${d}D ${h}H ${m}M ${s}S`;
+  }, 1000);
+}
+
+updateCartCount();
+loadCart();
 loadCheckout();
