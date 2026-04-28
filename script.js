@@ -133,7 +133,7 @@ if (passwordForm) {
 
     const input = document.getElementById("drop-password").value.trim().toUpperCase();
 
-    if (input === "YGF") {
+    if (input === "ROSARIES3/3") {
       window.location.href = "rosary.html";
     } else {
       document.getElementById("password-message").textContent = "Wrong password";
