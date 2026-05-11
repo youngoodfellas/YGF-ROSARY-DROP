@@ -144,8 +144,7 @@ if (passwordForm) {
 const countdown = document.querySelector("[data-countdown]");
 
 if (countdown) {
-  const dropDate = new Date("2026-05-30T19:00:00+01:00").getTime();
-
+  const dropDate = new Date("2026-05-14T20:00:00+01:00").getTime();
   setInterval(() => {
     const now = new Date().getTime();
     const gap = dropDate - now;
