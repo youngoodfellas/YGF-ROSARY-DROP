@@ -31,7 +31,7 @@ function addSelectedRosaryToCart() {
   const option = select.options[select.selectedIndex];
 
   const itemName = "YGF ROSARY (" + option.value + ")";
-  const itemPrice = 45;
+  const itemPrice = 35;
 
   const existing = cart.find(item => item.name === itemName);
 
@@ -65,7 +65,7 @@ function loadCart() {
 
   cart.forEach((item, index) => {
     const quantity = Number(item.quantity) || 1;
-    const price = Number(item.price) || 45;
+    const price = Number(item.price) || 35;
     const name = item.name || "YGF ROSARY";
 
     container.innerHTML += `
@@ -109,7 +109,7 @@ function loadCheckout() {
 
   cart.forEach(item => {
     const quantity = Number(item.quantity) || 1;
-    const price = Number(item.price) || 45;
+    const price = Number(item.price) || 35;
     const name = item.name || "YGF ROSARY";
 
     total += price * quantity;
