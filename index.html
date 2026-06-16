@@ -1,34 +1,166 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YGF Shop</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+
+  <meta 
+    name="viewport" 
+    content="user-scalable=no, width=device-width, initial-scale=1.0"
+  >
+
+  <title>YGF | Website On Hold</title>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #050505;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .background-text {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .background-text .top-text {
+      font-size: 14px;
+      letter-spacing: 12px;
+      color: rgba(255, 255, 255, 0.13);
+      margin-bottom: 26px;
+    }
+
+    .background-text h1 {
+      margin: 0;
+      font-size: clamp(42px, 8vw, 105px);
+      line-height: 0.9;
+      letter-spacing: -3px;
+      color: rgba(255, 255, 255, 0.11);
+      text-transform: uppercase;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .background-text .bottom-text {
+      font-size: 14px;
+      letter-spacing: 10px;
+      color: rgba(255, 255, 255, 0.13);
+      margin-top: 34px;
+    }
+
+    #dvd-logo {
+      position: absolute;
+      width: 360px;
+      height: auto;
+      user-select: none;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    @media (max-width: 700px) {
+      .background-text .top-text {
+        font-size: 10px;
+        letter-spacing: 6px;
+        margin-bottom: 18px;
+      }
+
+      .background-text h1 {
+        font-size: clamp(36px, 14vw, 72px);
+        letter-spacing: -2px;
+        white-space: normal;
+      }
+
+      .background-text .bottom-text {
+        font-size: 10px;
+        letter-spacing: 6px;
+        margin-top: 24px;
+      }
+
+      #dvd-logo {
+        width: 220px;
+      }
+    }
+  </style>
 </head>
 
-<body class="lock-page">
+<body>
 
-  <div class="lock-bg-blur"></div>
-  <div class="lock-bg-main"></div>
-  <div class="lock-overlay"></div>
+  <div class="background-text">
+    <div class="top-text">YOUNG GOOD FELLAS</div>
+    <h1>WEBSITE ON HOLD</h1>
+    <div class="bottom-text">STAY MILITANT</div>
+  </div>
 
-  <section class="lock-screen">
-    <img src="YGF L0G0.PNG" class="lock-logo" alt="YGF Logo">
+  <img src="YGF L0G0.PNG" id="dvd-logo" alt="YGF Logo">
 
-    <p class="small-title">YOUNG GOOD FELLAS</p>
-    <h1>STAY MILITANT</h1>
+  <script>
+    const logo = document.getElementById("dvd-logo");
 
-    <div class="countdown" data-countdown></div>
+    let x = 120;
+    let y = 120;
 
-    <form id="password-form">
-      <input type="password" id="drop-password" placeholder="PASSWORD">
-      <button type="submit">ENTER</button>
-    </form>
+    let dx = 2.4;
+    let dy = 2.1;
 
-    <p id="password-message"></p>
-  </section>
+    const colours = [
+      "brightness(0) saturate(100%) invert(53%) sepia(95%) saturate(2200%) hue-rotate(1deg) brightness(105%) contrast(104%)",
+      "brightness(0) saturate(100%) invert(82%) sepia(95%) saturate(900%) hue-rotate(5deg) brightness(105%) contrast(104%)",
+      "brightness(0) saturate(100%) invert(49%) sepia(95%) saturate(2000%) hue-rotate(190deg) brightness(105%) contrast(104%)",
+      "brightness(0) saturate(100%) invert(64%) sepia(80%) saturate(1300%) hue-rotate(80deg) brightness(105%) contrast(104%)",
+      "brightness(0) saturate(100%) invert(47%) sepia(92%) saturate(3500%) hue-rotate(290deg) brightness(105%) contrast(104%)"
+    ];
 
-  <script src="script.js?v=10"></script>
+    function changeColour() {
+      const randomColour = colours[Math.floor(Math.random() * colours.length)];
+      logo.style.filter = randomColour;
+    }
+
+    function animate() {
+      const logoWidth = logo.offsetWidth;
+      const logoHeight = logo.offsetHeight;
+
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      x += dx;
+      y += dy;
+
+      if (x + logoWidth >= screenWidth || x <= 0) {
+        dx = -dx;
+        changeColour();
+      }
+
+      if (y + logoHeight >= screenHeight || y <= 0) {
+        dy = -dy;
+        changeColour();
+      }
+
+      logo.style.left = x + "px";
+      logo.style.top = y + "px";
+
+      requestAnimationFrame(animate);
+    }
+
+    logo.onload = function () {
+      changeColour();
+      animate();
+    };
+
+    if (logo.complete) {
+      changeColour();
+      animate();
+    }
+  </script>
 </body>
 </html>
